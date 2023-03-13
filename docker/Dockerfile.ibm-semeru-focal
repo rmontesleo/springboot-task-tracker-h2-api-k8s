@@ -1,0 +1,23 @@
+FROM ibm-semeru-runtimes:open-17-jdk-focal as base
+WORKDIR /app
+COPY .mvn/ .mvn
+COPY mvnw pom.xml ./
+RUN ./mvnw dependency:resolve
+COPY src ./src
+
+FROM base as test
+CMD ["./mvnw", "test"]
+
+FROM base as development
+CMD ["./mvnw", "spring-boot:run"]
+
+
+FROM base as build
+RUN ./mvnw package
+
+FROM ibm-semeru-runtimes:open-17-jre-focal as production
+RUN  adduser --no-create-home --disabled-password spring 
+USER spring:spring
+EXPOSE 8080
+COPY --from=build /app/target/task-tracker-docker.jar /home/spring/task-tracker-docker.jar
+ENTRYPOINT ["java", "-jar", "/home/spring/task-tracker-docker.jar" ]
