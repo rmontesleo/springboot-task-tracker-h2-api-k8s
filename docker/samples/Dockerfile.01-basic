@@ -7,6 +7,6 @@ EXPOSE 8080
 
 # Create app directory
 WORKDIR /usr/src/app
-ADD target/task-tracker-docker.jar /usr/src/app/task-tracker-docker.jar
+ADD target/task-tracker-k8s.jar /usr/src/app/task-tracker-k8s.jar
 
-ENTRYPOINT ["java", "-jar", "task-tracker-docker.jar" ]
+ENTRYPOINT ["java", "-jar", "task-tracker-k8s.jar" ]

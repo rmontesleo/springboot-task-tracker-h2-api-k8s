@@ -19,5 +19,5 @@ FROM eclipse-temurin:17-jre-alpine as production
 RUN addgroup -S spring && adduser -S spring -G spring
 USER spring:spring
 EXPOSE 8080
-COPY --from=build /app/target/task-tracker-docker.jar /home/spring/task-tracker-docker.jar
-ENTRYPOINT ["java", "-jar", "/home/spring/task-tracker-docker.jarr" ]
+COPY --from=build /app/target/task-tracker-k8s.jar /home/spring/task-tracker-k8s.jar
+ENTRYPOINT ["java", "-jar", "/home/spring/task-tracker-k8s.jar" ]

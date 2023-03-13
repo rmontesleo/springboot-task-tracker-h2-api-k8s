@@ -21,5 +21,5 @@ RUN ./mvnw package
 
 FROM eclipse-temurin:17-jre-jammy as production
 EXPOSE 8080
-COPY --from=build /app/target/task-tracker-docker.jar /task-tracker-docker.jar
-ENTRYPOINT ["java", "-jar", "task-tracker-docker.jar" ]
+COPY --from=build /app/target/task-tracker-k8s.jar /task-tracker-k8s.jar
+ENTRYPOINT ["java", "-jar", "task-tracker-k8s.jar" ]

@@ -5,10 +5,10 @@ services:
     build:
       context: .
       target: development
-    container_name: task-tracker-h2-api-docker-container
+    container_name: task-tracker-h2-api-k8s-container
     ports:
       - 8080:8080
 
 networks:
   default:
-    name: task-tracker-h2-api-docker-network
+    name: task-tracker-h2-api-k8s-network
