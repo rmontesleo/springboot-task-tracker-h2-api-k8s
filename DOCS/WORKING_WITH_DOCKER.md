@@ -8,7 +8,7 @@
 touch docker-compose.override.yaml  .env_variables
 ```
 
-###
+### The content of .env_variables
 ```bash
 user_name="Chanchito Feliz"
 user_data="12345"

@@ -9,7 +9,7 @@
 
 ```bash
 export JAVA_HOME=/usr/lib/jvm/msopenjdk-17-amd64
-export M2_HOME=/usr/local/apache-maven/apache-maven-3.8.5
+export M2_HOME=/usr/local/apache-maven/apache-maven-3.8.6
 export PATH=$PATH:$JAVA_HOME/bin:$M2_HOME/bin
 ```
 

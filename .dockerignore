@@ -6,6 +6,9 @@
 # Avoid docker folder with samples of other docker files
 docker/
 
+# Avoid Kubernetes manifest files
+k8s/
+
 # Avoid documentation
 DOCS/
 
@@ -28,4 +31,3 @@ Dockerfile
 #
 LICENSE
 README.md
-

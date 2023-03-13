@@ -2,11 +2,11 @@ version: '3.8'
 
 services:
   api:   
-    image: springboot-task-tracker-h2-api-docker
-    container_name: springboot-task-tracker-h2-api-docker-container
+    image: springboot-task-tracker-h2-api-k8s
+    container_name: springboot-task-tracker-h2-api-k8s-container
     ports:
       - 8080:8080
 
 networks:
   default:
-    name: springboot-task-tracker-h2-api-docker-network
+    name: springboot-task-tracker-h2-api-k8s-network

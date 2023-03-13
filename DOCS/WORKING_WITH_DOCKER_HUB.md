@@ -17,12 +17,12 @@ docker_registry_name="<PUT_YOUR_DOCKER_REGISTRY_NAME>"
 image_version="<PUT_THE_VERSION_OF_YOUR_IMAGE>"
 
 # This is the name for the producion image
-image_name_prod="springboot-task-tracker-h2-api-docker"
+image_name_prod="springboot-task-tracker-h2-api-k8s"
 
-image_name_base="springboot-task-tracker-h2-api-docker-base"
-image_name_test="springboot-task-tracker-h2-api-docker-test"
-image_name_dev="springboot-task-tracker-h2-api-docker-dev"
-image_name_build="springboot-task-tracker-h2-api-docker-build"
+image_name_base="springboot-task-tracker-h2-api-k8s-base"
+image_name_test="springboot-task-tracker-h2-api-k8s-test"
+image_name_dev="springboot-task-tracker-h2-api-k8s-dev"
+image_name_build="springboot-task-tracker-h2-api-k8s-build"
 
 ```
 

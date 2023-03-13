@@ -9,10 +9,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.demo.task.tracker</groupId>
-	<artifactId>springboot-task-tracker-h2-api-docker</artifactId>
+	<artifactId>springboot-task-tracker-h2-api-k8s</artifactId>
 	<version>0.0.1</version>
-	<name>task-tracker-docker</name>
-	<description>Task Tracker API with Spring Boot, H2 Database and Docker</description>
+	<name>task-tracker-k8s</name>
+	<description>Task Tracker API with Spring Boot, H2 Database,Docker and Kubernetes</description>
 	<properties>
 		<java.version>17</java.version>
 	</properties>

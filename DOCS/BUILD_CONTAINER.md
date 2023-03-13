@@ -9,12 +9,12 @@ docker build -t  <IMAGE_NAME>:<VERSION>  .
 
 ### Create the image for the project
 ```bash
-docker build -t  springboot-todo-h2-api-docker:0.1  .
+docker build -t  springboot-todo-h2-api-k8s:0.1  .
 ```
 
 ### Create the image for production
 ```bash
-docker build --target production -t springboot-todo-h2-api-docker:v1 .
+docker build --target production -t springboot-todo-h2-api-k8s:v1 .
 ```
 
 
@@ -25,7 +25,7 @@ docker images
 
 ### Run locally your image
 ```bash
-docker run -d -p 8080:8080 --name app01 springboot-todo-h2-api-docker:0.1
+docker run -d -p 8080:8080 --name app01 springboot-todo-h2-api-k8s:v1
 ```
 
 ### Go inside the container
@@ -70,12 +70,12 @@ docker-compose down -v
 
 
 ```bash
-export USER_REGISTRY_NAME=<SET_YOUR_DOCKER_USER_NAME>
+export docker_registry_name=<SET_YOUR_DOCKER_USER_NAME>
 ```
 
 ### Tag your image
 ```bash
-docker tag springboot-todo-h2-api-docker:0.1  $USER_REGISTRY_NAME/springboot-todo-h2-api-docker:0.1
+docker tag springboot-todo-h2-api-k8s:v1  $docker_registry_name/springboot-todo-h2-api-k8s:v1
 ```
 
 
@@ -91,5 +91,5 @@ docker login
 ### upload the image
 
 ```bash
-docker push  $USER_REGISTRY_NAME/springboot-todo-h2-api-docker:0.1
+docker push  $docker_registry_name/springboot-todo-h2-api-k8s:v1
 ```
