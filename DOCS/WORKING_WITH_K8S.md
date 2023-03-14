@@ -14,6 +14,10 @@
 
 - [Configure a Pod to Use a ConfigMap](https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/)
 
+- [Kubernetes best practices: Organizing with Namespaces](https://cloud.google.com/blog/products/containers-kubernetes/kubernetes-best-practices-organizing-with-namespaces)
+
+
+
 
 
 
@@ -23,3 +27,5 @@
 - [How to create K8S deployment in specific namespace?](https://stackoverflow.com/questions/59261894/how-to-create-k8s-deployment-in-specific-namespace)
 
 - [How to set Env from ConfigMap in kubectl run?](https://stackoverflow.com/questions/61712203/how-to-set-env-from-configmap-in-kubectl-run)
+
+- [How to create K8S deployment in specific namespace?](https://stackoverflow.com/questions/59261894/how-to-create-k8s-deployment-in-specific-namespace)
