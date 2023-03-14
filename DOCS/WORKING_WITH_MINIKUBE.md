@@ -5,32 +5,111 @@
 
 ### Basics operations with the pod
 ```bash
-# Create the minikube cluster
+# Create the minikube cluster, depends on your resources could change the values
 minikube start  --vm-driver=docker --memory=3g  --nodes 2
 
 
 # Create the pod call task-api
-kubectl run task-api --image=rmontesleo/springboot-todo-h2-api-k8s:v1
+kubectl run task-api-pod --image=rmontesleo/springboot-todo-h2-api-k8s:v1
 
-# get the pod in yaml format
-kubectl run task-api --image=rmontesleo/springboot-todo-h2-api-k8s:v1 --dry-run=client -o yaml
+# get the pod in yaml format and then send the output to a manifest file
+kubectl run task-api-pod --image=rmontesleo/springboot-todo-h2-api-k8s:v1 --dry-run=client -o yaml
+kubectl run task-api-pod --image=rmontesleo/springboot-todo-h2-api-k8s:v1 --dry-run=client -o yaml > 01-00-pod.yaml
 
 # go inside the pod
-kubectl exec -it task-api -- sh
+kubectl exec -it task-api-pod -- sh
+```
+
+### inside the pod
+```bash
+cat /etc/os-release
+
+# list the files inside the home folder
+ls $HOME
+
+# check the current environment variables
+env
+
+exit
+```
+
+#### Create a new pod with environment variables
+```bash
+
+kubectl run task-api-env-pod --image=rmontesleo/springboot-todo-h2-api-k8s:v1 --env="user_data=987"  --env="user_name=Leo" 
+
+## get teh yaml definion of the second pod
+kubectl run task-api-env-pod --image=rmontesleo/springboot-todo-h2-api-k8s:v1 --env="user_data=987"  --env="user_name=Leo"  --dry-run=client -o yaml
+
+kubectl run task-api-env-pod --image=rmontesleo/springboot-todo-h2-api-k8s:v1 --env="user_data=987"  --env="user_name=Leo"  --dry-run=client -o yaml > 01-00-pod-env.yaml
+
+kubectl get pods
+kubectl get pod task-api-env-pod -o yaml
+kubectl describe pod task-api-env-pod
+
+# go inside the pod
+kubectl exec -it task-api-env-pod -- sh
+```
+
+### in the new pod
+```bash
+# find the variables user_data and user_name
+env
+exit
 ```
 
 ### Create a config map 
 ```bash
+# Create a config map
 kubectl create configmap task-api-cm --from-literal=user_name="Chanchito Feliz" --from-literal=user_data=12345
 
-# Review the config map
-kubectl describe cm task-api-cm
+# get details of the config map and create a manifest file of this resource
+kubectl get cm task-api-cm
+kubectl get cm task-api-cm -o yaml
+kubectl get cm task-api-cm -o yaml > 01-01-configmap.yaml
 
-# apply the configmap to the deployment
-kubectl set env --from=configmap/task-api-cm deploy/task-api-deployment
 
-#
-kubectl exec -it  task-api -- sh
+## get teh yaml definion of the 3th pod
+kubectl run task-api-cm-pod --image=rmontesleo/springboot-todo-h2-api-k8s:v1  --env="user_data=CHANGE_ME"  --env="user_name=CHANGE_ME" --dry-run=client -o yaml
+kubectl run task-api-cm-pod --image=rmontesleo/springboot-todo-h2-api-k8s:v1  --env="user_data=CHANGE_ME"  --env="user_name=CHANGE_ME" --dry-run=client -o yaml > 01-00-pod-cm.yaml
+
+# edit the 01-00-pod-cm.yaml manifest
+vim 01-00-pod-cm.yaml 
+```
+
+#### original
+```yaml
+- env:
+    - name: user_data
+      value: CHANGE_ME
+    - name: user_name
+      value: CHANGE_ME
+```
+
+#### modified
+```yaml
+- env:
+    - name: user_data
+      valueFrom:
+        configMapKeyRef:
+          name: task-api-cm
+          key: user_data
+    - name: user_name
+      valueFrom:
+        configMapKeyRef:
+          name: task-api-cm
+          key: user_name
+```
+
+### create the pod with the manifest
+```bash
+kubectl apply -f 01-00-pod-cm.yaml
+
+kubectl get  pods
+
+# enter in the pod and check env variables
+kubectl exec -it  task-api-cm-pod -- sh
+
 ```
 
 

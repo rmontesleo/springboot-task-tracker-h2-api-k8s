@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Pod
+metadata:  
+  labels:
+    run: task-api-pod
+  name: task-api-pod
+spec:
+  containers:
+  - image: rmontesleo/springboot-todo-h2-api-k8s:v1
+    name: task-api-pod
+  dnsPolicy: ClusterFirst
+  restartPolicy: Always

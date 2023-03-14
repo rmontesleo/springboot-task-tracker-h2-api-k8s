@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    run: task-api-env-pod
+  name: task-api-env-pod
+spec:
+  containers:
+  - env:
+    - name: user_data
+      value: "987"
+    - name: user_name
+      value: Leo
+    image: rmontesleo/springboot-todo-h2-api-k8s:v1
+    name: task-api-env-pod
+  dnsPolicy: ClusterFirst
+  restartPolicy: Always
