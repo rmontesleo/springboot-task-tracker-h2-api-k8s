@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.demo.task.tracker.dto.TaskDto;
 import com.demo.task.tracker.models.Task;
 import com.demo.task.tracker.services.TaskService;
 
@@ -26,12 +27,12 @@ public class TaskController {
     private final TaskService taskService;
 
     @GetMapping()
-    public ResponseEntity<List<Task>> getAllTask(){
+    public ResponseEntity<List<TaskDto>> getAllTask(){
         return  ResponseEntity.ok( taskService.getAllTask() );
     }
 
     @PostMapping()
-    public ResponseEntity<Task> postTask(  @RequestBody Task newTask ){
+    public ResponseEntity<TaskDto> postTask(  @RequestBody TaskDto newTask ){
         return ResponseEntity
                 .status(HttpStatus.CREATED)
                 .body( taskService.saveTask(newTask)  );
@@ -39,8 +40,8 @@ public class TaskController {
 
 
     @GetMapping("/{id}")
-    public ResponseEntity<Task> findTaskById( @PathVariable Long id ){
-        return taskService.findTaskById(id)
+    public ResponseEntity<TaskDto> findTaskById( @PathVariable Long id ){
+        return taskService.findTaskDtoById(id)
             .map( task -> ResponseEntity.status(HttpStatus.OK).body(task)  )
             .orElse(ResponseEntity.status(HttpStatus.NOT_FOUND).build() );
     }
@@ -56,11 +57,11 @@ public class TaskController {
 
 
     @PutMapping( "/{id}" )
-    public ResponseEntity<Task> putTask( 
+    public ResponseEntity<TaskDto> putTask( 
         @PathVariable Long id, 
-        @RequestBody Task updatedTask ){        
+        @RequestBody TaskDto updatedTask ){        
             return taskService.updateTask(id, updatedTask)
-                        .map( task -> ResponseEntity.ok(task) )
+                        .map( ResponseEntity::ok )
                         .orElse( ResponseEntity.notFound().build() );
     }
     

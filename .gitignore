@@ -1,8 +1,20 @@
-HELP.md
-target/
-!.mvn/wrapper/maven-wrapper.jar
-!**/src/main/**/target/
-!**/src/test/**/target/
+### Environment variables ###
+.env
+.env_variables
+.env_container
+.env_compose
+
+### Security files ###
+*.sarif
+
+
+### OTHER FILES ###
+.dccache
+
+### Ignore override compose configurations ###
+docker-compose.override.yaml
+docker-compose.override.yml
+
 
 ### STS ###
 .apt_generated
@@ -32,13 +44,13 @@ build/
 ### VS Code ###
 .vscode/
 
-### Environment variables ###
-.env
-.env_variables
-.env_container
-.env_compose
+### Initial Help file and some other items about target ###
+HELP.md
+target/
+!.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**/target/
+!**/src/test/**/target/
 
 
-### Ignore override compose configurations ###
-docker-compose.override.yaml
-docker-compose.override.yml
+
+
